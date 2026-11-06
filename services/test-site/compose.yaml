@@ -1,0 +1,10 @@
+services:
+  web:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      # Localhost only: Docker-published ports can bypass UFW.
+      - "127.0.0.1:8080:80"
+    volumes:
+      # Read-only: the container cannot change the site files.
+      - ./site:/usr/share/nginx/html:ro

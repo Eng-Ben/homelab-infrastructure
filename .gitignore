@@ -1,0 +1,10 @@
+# Secrets and local config
+.env
+*.env
+!*.env.example
+secrets/
+*.pem
+*.key
+
+# macOS
+.DS_Store
