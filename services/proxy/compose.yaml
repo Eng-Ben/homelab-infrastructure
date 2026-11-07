@@ -1,3 +1,7 @@
+# Caddy reverse proxy: the single entry point for all services.
+# Published only on 127.0.0.1:8080, where Tailscale Serve forwards HTTPS traffic.
+# Joins one network per service, so services cannot reach each other.
+
 services:
   caddy:
     image: caddy:2-alpine

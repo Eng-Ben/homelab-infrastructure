@@ -1,3 +1,7 @@
+# Static test page served by nginx, used to verify the full path
+# (Tailscale Serve -> Caddy -> service) before real apps are added.
+# Publishes no ports and creates the proxy-test-site network shared only with Caddy.
+
 services:
   web:
     image: nginx:alpine

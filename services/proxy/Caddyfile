@@ -1,3 +1,6 @@
+# Routes requests from Tailscale Serve to the services and adds security headers.
+# Speaks plain HTTP only, because TLS is terminated before traffic reaches Caddy.
+
 {
 	# TLS is terminated by Tailscale (later also Cloudflare), so Caddy only speaks plain HTTP.
 	auto_https off
