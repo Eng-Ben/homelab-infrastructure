@@ -2,9 +2,18 @@ services:
   web:
     image: nginx:alpine
     restart: unless-stopped
-    ports:
-      # Localhost only: Docker-published ports can bypass UFW.
-      - "127.0.0.1:8080:80"
+    # No published ports: only Caddy can reach this service.
     volumes:
       # Read-only: the container cannot change the site files.
       - ./site:/usr/share/nginx/html:ro
+    networks:
+      proxy-test-site:
+        aliases:
+          - test-site
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  # Shared only with Caddy. Created here, so start this service before the proxy.
+  proxy-test-site:
+    name: proxy-test-site

@@ -1,0 +1,30 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      # Localhost only: Tailscale Serve forwards here. Docker-published ports can bypass UFW.
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - proxy-test-site
+    # Least privilege: drop all Linux capabilities except binding to port 80.
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  # One network per service, created by that service's compose.yaml.
+  # Services cannot reach each other; only Caddy can reach them.
+  proxy-test-site:
+    external: true

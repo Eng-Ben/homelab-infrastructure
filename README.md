@@ -23,26 +23,26 @@ All traffic reaches the server over Tailscale. Nothing is exposed on the local n
 
 ## Hardware
 
-| Part    | Spec                                     |
-| ------- | ---------------------------------------- |
-| Machine | ASUS X540L laptop                        |
-| CPU     | Intel Core i3-5005U, 2 cores / 4 threads |
-| RAM     | 8 GB                                     |
-| Storage | 120 GB SATA SSD                          |
-| Network | 100 Mbit/s Ethernet                      |
+| Part | Spec |
+|---|---|
+| Machine | ASUS X540L laptop |
+| CPU | Intel Core i3-5005U, 2 cores / 4 threads |
+| RAM | 8 GB |
+| Storage | 120 GB SATA SSD |
+| Network | 100 Mbit/s Ethernet |
 
 ## Security
 
-| Measure                                                                | Why                                                                               |
-| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| No port forwarding on the router                                       | The server is not reachable from the internet.                                    |
-| Tailscale for all access                                               | Encrypted, authenticated access from my devices only, also from outside the home. |
-| UFW denies all incoming traffic except on `tailscale0` (IPv4 and IPv6) | Blocks the LAN and the server's public IPv6 address.                              |
-| SSH keys only, no root login                                           | Password guessing is not possible.                                                |
-| Container ports bound to `127.0.0.1`                                   | Docker-published ports can bypass UFW.                                            |
-| User not in the `docker` group                                         | Membership is equivalent to root without `sudo`.                                  |
-| Unattended security upgrades                                           | Known vulnerabilities are patched automatically.                                  |
-| No secrets in this repository                                          | Secrets live only on the server, never in Git.                                    |
+| Measure | Why |
+|---|---|
+| No port forwarding on the router | The server is not reachable from the internet. |
+| Tailscale for all access | Encrypted, authenticated access from my devices only, also from outside the home. |
+| UFW denies all incoming traffic except on `tailscale0` (IPv4 and IPv6) | Blocks the LAN and the server's public IPv6 address. |
+| SSH keys only, no root login | Password guessing is not possible. |
+| Container ports bound to `127.0.0.1` | Docker-published ports can bypass UFW. |
+| User not in the `docker` group | Membership is equivalent to root without `sudo`. |
+| Unattended security upgrades | Known vulnerabilities are patched automatically. |
+| No secrets in this repository | Secrets live only on the server, never in Git. |
 
 ## Repository layout
 

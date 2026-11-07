@@ -1,0 +1,16 @@
+{
+	# TLS is terminated by Tailscale (later also Cloudflare), so Caddy only speaks plain HTTP.
+	auto_https off
+}
+
+:80 {
+	log
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	reverse_proxy test-site:80
+}
